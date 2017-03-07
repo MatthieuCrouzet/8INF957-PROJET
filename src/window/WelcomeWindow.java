@@ -20,7 +20,7 @@ public class WelcomeWindow extends JFrame {
     }
 
     private void init(){
-        setTitle("Application utils.FilesCreator Creator");
+        setTitle("Application Pattern Creator");
         setSize(Window.WIDTH, Window.HEIGHT);
         setLocationRelativeTo(null);
         setResizable(false);
