@@ -8,6 +8,7 @@ public enum Pattern {
     ITERATOR,
     MEDIATOR,
     SINGLETON,
+    FLYWEIGHT,
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
@@ -18,7 +19,6 @@ public enum Pattern {
     STRATEGY,
     VISITOR,
     PROXY,
-    FLYWEIGHT,
     MEMENTO,
     PROTOTYPE,
     CHAIN_OF_RESPONSIBILITY,
