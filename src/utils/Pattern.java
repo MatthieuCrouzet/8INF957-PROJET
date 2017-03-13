@@ -5,10 +5,10 @@ package utils;
  */
 public enum Pattern {
     OBSERVER,
+    ITERATOR,
     /*
     MEDIATOR,
     MVC,
-    ITERATOR,
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
     COMMAND,
