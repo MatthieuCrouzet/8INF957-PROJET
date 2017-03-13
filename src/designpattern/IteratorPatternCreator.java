@@ -22,19 +22,19 @@ public class IteratorPatternCreator extends FilesCreator {
 
     @Override
     protected void createBinaryFile() {
-        FileData observer = createFileData(path + "Iterator.java",
+        FileData iterator = createFileData(path + "Iterator.java",
                 "package designpattern." + packageName + "; \n\n" +
                         "public interface Iterator {\n\n" +
                         "\tpublic boolean hasNext();\n\n" +
                         "\tpublic Object next();\n\n" +
                         "}\n");
-        FileData observable = createFileData(path + "Container.java",
+        FileData container = createFileData(path + "Container.java",
                 "package designpattern." + packageName + "; \n\n" +
                         "public interface Container {\n\n" +
                         "\tpublic Iterator getIterator();\n\n" +
                         "}\n");
-        this.fileDataTab[0] = observable;
-        this.fileDataTab[1] = observer;
+        this.fileDataTab[0] = container;
+        this.fileDataTab[1] = iterator;
         try {
             FileOutputStream file = new FileOutputStream(binaryFileName);
             ObjectOutputStream os = new ObjectOutputStream(file);
