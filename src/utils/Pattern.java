@@ -6,14 +6,13 @@ package utils;
 public enum Pattern {
     OBSERVER,
     ITERATOR,
-    /*
     MEDIATOR,
-    MVC,
+    SINGLETON,
+    /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
     COMMAND,
     COMPOSITE,
-    SINGLETON,
     ADAPTER,
     DECORATOR,
     STRATEGY,

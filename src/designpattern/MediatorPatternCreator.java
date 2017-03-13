@@ -17,7 +17,7 @@ public class MediatorPatternCreator extends FilesCreator {
         File f = new File(path + "\\example\\");
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
-        this.binaryFileName = "binaryfiles\\iterator.bin";
+        this.binaryFileName = "binaryfiles\\" + packageName + ".bin";
     }
 
     @Override
