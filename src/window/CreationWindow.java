@@ -134,8 +134,6 @@ public class CreationWindow extends JFrame {
                         break;
                     case MEDIATOR:
                         break;
-                    case MVC:
-                        break;
                 }
             }
         }

@@ -2,6 +2,8 @@ package designpattern;
 
 import java.io.*;
 
+import utils.Separator;
+
 /**
  * Created by Matthieu CROUZET on 13/03/2017.
  */
@@ -9,15 +11,15 @@ public class SingletonPatternCreator extends FilesCreator {
 
     String packageName = "singleton";
 
-    String path = MAIN_PATH + "\\" + packageName + "\\";
+    String path = MAIN_PATH + Separator.SEPARATOR + packageName + Separator.SEPARATOR;
 
     public SingletonPatternCreator(){
         super();
         int nbFiles = 1;
-        File f = new File(path + "\\example\\");
+        File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
-        this.binaryFileName = "binaryfiles\\" + packageName + ".bin";
+        this.binaryFileName = "binaryfiles" + Separator.SEPARATOR + packageName + ".bin";
     }
 
     @Override

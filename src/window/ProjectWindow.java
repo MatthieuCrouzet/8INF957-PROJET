@@ -54,7 +54,7 @@ public class ProjectWindow extends JFrame {
 
         projectDirectoryInput = new JTextField();
         projectDirectoryInput.setColumns(30);
-        projectDirectoryInput.setText(new File("").getAbsolutePath() + "\\" + getProjectNameInput().getText());
+        projectDirectoryInput.setText(new File("").getAbsolutePath() + Separator.SEPARATOR + getProjectNameInput().getText());
         panel.add(projectDirectoryInput);
 
         DirectoryChooser dc = new DirectoryChooser(this);
@@ -77,11 +77,11 @@ public class ProjectWindow extends JFrame {
                 String name = projectNameInput.getText();
                 //System.out.println(projectNameInput.getText());
                 //System.out.println(projectDirectoryInput.getText());
-                if(folder.substring(0).endsWith("\\")){
+                if(folder.substring(0).endsWith(Separator.SEPARATOR)){
                     folder.deleteCharAt(folder.length()-1);
                 }
                 if(!folder.substring(0).endsWith(name)){
-                    folder.append("\\" + name);
+                    folder.append(Separator.SEPARATOR + name);
                 }
                 MyMain.userData.setProjectName(name);
                 MyMain.userData.setProjectFolder(folder.substring(0));

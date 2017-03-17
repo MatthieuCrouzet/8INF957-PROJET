@@ -2,13 +2,14 @@ package designpattern;
 
 import java.io.*;
 import main.*;
+import utils.Separator;
 
 /**
  * Created by Matthieu CROUZET on 05/03/2017.
  */
 public abstract class FilesCreator {
 
-    public final static String MAIN_PATH = MyMain.userData.getProjectFolder() + "\\src\\designpattern";
+    public final static String MAIN_PATH = MyMain.userData.getProjectFolder() + Separator.SEPARATOR + "src"+ Separator.SEPARATOR + "designpattern";
 
     public String binaryFileName;
     public FileData[] fileDataTab;

@@ -1,6 +1,8 @@
 package designpattern;
 
 import main.MyMain;
+import utils.Separator;
+
 import java.io.*;
 
 /**
@@ -8,8 +10,8 @@ import java.io.*;
  */
 public class ProjectCreator extends FilesCreator {
 
-    private String packagename = MyMain.userData.getProjectName().toLowerCase().replaceAll("\\s+", "");
-    private String path = MyMain.userData.getProjectFolder() + "\\src\\" + packagename + "\\";
+    private String packagename = MyMain.userData.getProjectName().toLowerCase().replaceAll(Separator.SEPARATOR + "s+", "");
+    private String path = MyMain.userData.getProjectFolder() + Separator.SEPARATOR + "src" + Separator.SEPARATOR + packagename + Separator.SEPARATOR;
 
     public ProjectCreator() {
         super();
@@ -17,7 +19,7 @@ public class ProjectCreator extends FilesCreator {
         File f = new File(path);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
-        this.binaryFileName = "binaryfiles\\project.bin";
+        this.binaryFileName = "binaryfiles" + Separator.SEPARATOR + "project.bin";
     }
 
     @Override

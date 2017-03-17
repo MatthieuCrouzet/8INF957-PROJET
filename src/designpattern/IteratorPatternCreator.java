@@ -2,6 +2,8 @@ package designpattern;
 
 import java.io.*;
 
+import utils.Separator;
+
 /**
  * Created by Matthieu CROUZET on 13/03/2017.
  */
@@ -9,15 +11,15 @@ public class IteratorPatternCreator extends FilesCreator {
 
     String packageName = "iterator";
 
-    String path = MAIN_PATH + "\\" + packageName + "\\";
+    String path = MAIN_PATH + Separator.SEPARATOR + packageName + Separator.SEPARATOR;
 
     public IteratorPatternCreator(){
         super();
         int nbFiles = 2;
-        File f = new File(path + "\\example\\");
+        File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
-        this.binaryFileName = "binaryfiles\\iterator.bin";
+        this.binaryFileName = "binaryfiles" + Separator.SEPARATOR + "iterator.bin";
     }
 
     @Override

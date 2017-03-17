@@ -2,6 +2,7 @@ package designpattern;
 
 import designpattern.FileData;
 import designpattern.FilesCreator;
+import utils.Separator;
 
 import java.io.*;
 
@@ -10,15 +11,15 @@ import java.io.*;
  */
 public class ObserverPatternCreator extends FilesCreator {
 
-    String path = MAIN_PATH + "\\observer\\";
+    String path = MAIN_PATH + "//observer//";
 
     public ObserverPatternCreator(){
         super();
         int nbFiles = 2;
-        File f = new File(path + "\\example\\");
+        File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
-        this.binaryFileName = "binaryfiles\\observer.bin";
+        this.binaryFileName = "binaryfiles" +Separator.SEPARATOR + "observer.bin";
     }
 
     @Override

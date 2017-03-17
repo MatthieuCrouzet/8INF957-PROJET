@@ -1,6 +1,9 @@
 package window;
 
 import javax.swing.*;
+
+import utils.Separator;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -45,7 +48,7 @@ public class DirectoryChooser extends JPanel
                     pw.getProjectDirectoryInput().setText(chooser.getSelectedFile().getAbsolutePath());
                 } else {
                     String s = chooser.getSelectedFile().getAbsolutePath()
-                            + "\\" + pw.getProjectNameInput().getText();
+                            + Separator.SEPARATOR + pw.getProjectNameInput().getText();
                     pw.getProjectDirectoryInput().setText(s);
                 }
             }

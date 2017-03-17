@@ -1,6 +1,7 @@
 package main;
 
 import utils.Pattern;
+import utils.Separator;
 import window.*;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import javax.swing.*;
 public class MyMain {
 
     public static UserData userData = new UserData();
+    
+    public static Separator separator = new Separator();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
