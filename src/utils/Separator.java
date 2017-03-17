@@ -10,7 +10,7 @@ public final class Separator {
 	public Separator(){
 		String OS = System.getProperty("os.name").toLowerCase();
 		
-		//Define the separator to use to create files at the right place depending on current OS.
+		//Define the separator to use to create files at the right place depending on current OS used (i.e Windows or Linux).
 		if(OS.indexOf("win")>0){
 			SEPARATOR = "\\";
 		}
