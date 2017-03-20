@@ -9,11 +9,11 @@ public enum Pattern {
     MEDIATOR,
     SINGLETON,
     FLYWEIGHT,
+    COMPOSITE
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
     COMMAND,
-    COMPOSITE,
     ADAPTER,
     DECORATOR,
     STRATEGY,
