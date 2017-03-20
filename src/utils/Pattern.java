@@ -9,7 +9,8 @@ public enum Pattern {
     MEDIATOR,
     SINGLETON,
     FLYWEIGHT,
-    COMPOSITE
+    COMPOSITE,
+    STATE,
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
@@ -22,7 +23,6 @@ public enum Pattern {
     MEMENTO,
     PROTOTYPE,
     CHAIN_OF_RESPONSIBILITY,
-    STATE,
     TEMPLATE_METHOD,
     INTERPRETER,
     BRIDGE,
