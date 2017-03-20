@@ -11,7 +11,8 @@ public enum Pattern {
     FLYWEIGHT,
     COMPOSITE,
     STATE,
-    ADAPTER
+    ADAPTER,
+    INTERPRETER,
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
@@ -24,7 +25,6 @@ public enum Pattern {
     PROTOTYPE,
     CHAIN_OF_RESPONSIBILITY,
     TEMPLATE_METHOD,
-    INTERPRETER,
     BRIDGE,
     BUILDER,
     FACADE,
