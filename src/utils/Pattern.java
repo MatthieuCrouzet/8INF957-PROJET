@@ -11,11 +11,11 @@ public enum Pattern {
     FLYWEIGHT,
     COMPOSITE,
     STATE,
+    ADAPTER
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
     COMMAND,
-    ADAPTER,
     DECORATOR,
     STRATEGY,
     VISITOR,

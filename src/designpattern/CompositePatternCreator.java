@@ -1,6 +1,5 @@
 package designpattern;
 
-import main.MyMain;
 import utils.Separator;
 
 import java.io.*;
