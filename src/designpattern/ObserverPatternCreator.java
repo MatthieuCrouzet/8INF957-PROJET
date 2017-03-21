@@ -3,10 +3,12 @@ package designpattern;
 import utils.Separator;
 
 import java.io.*;
+import java.util.Observer;
+
 /**
  * Created by Baptiste BURON on 19/03/2017.
  */
-public class ObserverPatternCreator extends FilesCreator{
+public class ObserverPatternCreator extends FilesCreator {
 
     String packageName = "observer";
 

@@ -1,7 +1,9 @@
 package designpattern;
 
 import java.io.*;
+import java.util.Observer;
 
+import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
 import utils.Separator;
 
 /**
@@ -15,7 +17,7 @@ public class SingletonPatternCreator extends FilesCreator {
 
     public SingletonPatternCreator(){
         super();
-        int nbFiles = 1;
+        int nbFiles = 4;
         File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
@@ -24,14 +26,50 @@ public class SingletonPatternCreator extends FilesCreator {
 
     @Override
     protected void createBinaryFile() {
-        FileData singleton = createFileData(path + "Singleton.java",
+        FileData singleton = createFileData(path + "SingletonProtocol.aj",
                 "package designpattern." + packageName + "; \n\n" +
-                        "public class Singleton {\n\n" +
-                        "\tprivate Singleton;\n\n" +
-                        "\tprivate static Singleton INSTANCE = new Singleton();\n\n" +
-                        "\tpublic static Singleton getInstance(){ return INSTANCE; }\n\n" +
+                        "public abstract aspect SingletonProtocol {\n\n" +
+                        "\tprivate Hashable singletons = new Hashable();\n\n" +
+                        "\tpublic interface Singleton {};\n\n" +
+                        "\tprotected pointcut protectionExclusions();\n\n" +
+                        "\tObject around() : call((Singleton+).new(..)) && ! protectionExclusions(){\n" +
+                        "\t\tClass singleton = thisJoinPoint.getSignature().getDeclaringType();\n" +
+                        "\t\tif (singletons.get(singleton) == null)  { singletons.put(singleton, proceed()); }\n" +
+                        "\t\treturn singletons.get(singleton);\n}\n\n" +
+                        "}\n");
+        String examplePath = path  + Separator.SEPARATOR + "example" + Separator.SEPARATOR;
+        FileData screenSingleton = createFileData(examplePath + "ScreenSingleton.aj",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public aspect ScreenSingleton extends SingletonProtocol {\n\n" +
+                        "\tdeclare parents: \n" +
+                        "\t\tScreen implements Singleton;\n\n" +
+                        "\tprotected pointcut protectionExclusions(): \n" +
+                        "\t\tcall((Screen+).new(..));\n\n" +
+                        "}\n");
+        FileData screen = createFileData(path + "Screen.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public class Screen {\n\n" +
+                        "\tprivate int width, height;" +
+                        "\tpublic Screen() { width = 100; heigth = 100; }\n\n" +
+                        "\tpublic void setWidth(int w) { width = w; } \n\n" +
+                        "\tpublic void setHeight(int h) { heigth = h; } \n\n" +
+                        "\tpublic int getWidth() { return width; } \n\n" +
+                        "\tpublic int getHeight() { return height; } \n\n" +
+                        "}\n");
+        FileData main = createFileData(examplePath + "Main.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public class Main {\n\n" +
+                        "\tpublic void main() {" +
+                        "\t\tScreen s1 = new Screen();\n" +
+                        "\t\tScreen s2 = new Screen();\n" +
+                        "\t\ts1.setWidth(50);\n" +
+                        "\t\tSystem.out.println(\"s1 width = \" + s1.getWidth() + \"\ns2 width = \" + s2.getWidth());\n" +
+                        "\t}\n\n" +
                         "}\n");
         this.fileDataTab[0] = singleton;
+        this.fileDataTab[1] = screenSingleton;
+        this.fileDataTab[2] = screen;
+        this.fileDataTab[3] = main;
         try {
             FileOutputStream file = new FileOutputStream(binaryFileName);
             ObjectOutputStream os = new ObjectOutputStream(file);

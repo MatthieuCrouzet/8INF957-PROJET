@@ -4,7 +4,7 @@ package utils;
  * Created by Matthieu CROUZET on 04/03/2017.
  */
 public enum Pattern {
-    OBSERVER,
+    OBSERVER, //AspectJ pour ajouter de la modularité
     ITERATOR,
     MEDIATOR,
     SINGLETON,
