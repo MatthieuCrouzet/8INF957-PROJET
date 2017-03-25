@@ -14,7 +14,7 @@ public class CompositePatternCreator extends FilesCreator{
 
     public CompositePatternCreator(){
         super();
-        int nbFiles = 3;
+        int nbFiles = 4;
         File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
@@ -64,6 +64,7 @@ public class CompositePatternCreator extends FilesCreator{
         this.fileDataTab[0] = component;
         this.fileDataTab[1] = composite;
         this.fileDataTab[2] = leaf;
+        this.fileDataTab[3] = compositeProtocol;
         try {
             FileOutputStream file = new FileOutputStream(binaryFileName);
             ObjectOutputStream os = new ObjectOutputStream(file);
