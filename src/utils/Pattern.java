@@ -13,6 +13,7 @@ public enum Pattern {
     STATE,
     ADAPTER,
     INTERPRETER,
+    BUILDER,
     /*
     FACTORY_METHOD,
     ABSTRACT_FACTORY,
