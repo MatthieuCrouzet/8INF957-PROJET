@@ -24,7 +24,7 @@ public class IteratorPatternCreator extends FilesCreator {
 
     @Override
     protected void createBinaryFile() {
-        FileData iterator = createFileData(path + "IteratorAspect.java",
+        FileData iterator = createFileData(path + "IteratorAspect.aj",
                 "package designpattern." + packageName + "; \n\n" +
                         "public abstract aspect IteratorAspect {\n\n" +
                         "\tpublic interface Aggregate {\n\n" +
@@ -52,7 +52,7 @@ public class IteratorPatternCreator extends FilesCreator {
                         "\tpublic boolean remove(Object o){\n\t\temployees.remove(o);\n\t}\n\n" +
                         "\tpublic Object get(int index){\n\t\temployees.get(index);\n\t}\n\n" +
                         "}\n");
-        FileData employeeIterator = createFileData(examplePath + "EmployeeIterator.java",
+        FileData employeeIterator = createFileData(examplePath + "EmployeeIterator.aj",
                 "package designpattern." + packageName + ".example; \n\n" +
                         "public aspect EmployeeIterator extends IteratorAspect {\n\n" +
                         "\tdeclare parents : EmployeeCollection implements Aggregate;\n\n" +

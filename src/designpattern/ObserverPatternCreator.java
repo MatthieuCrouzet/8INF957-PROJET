@@ -67,7 +67,7 @@ public class ObserverPatternCreator extends FilesCreator {
                         "\tpublic String getName() {\n\t\treturn name;\n\t}\n\n" +
                         "\tpublic void setName(String newName) {\n\t\tname = newName;\n\t}\n\n" +
                         "}\n");
-        FileData productObserver = createFileData(examplePath + "ProductObserver.java",
+        FileData productObserver = createFileData(examplePath + "ProductObserver.aj",
                 "package designpattern." + packageName + "example; \n\n" +
                         "public aspect ProductObserver extends ObserverProtocol {\n\n" +
                         "\tdeclare parents: Product implements Subject;\n\n"+
