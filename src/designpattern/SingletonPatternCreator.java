@@ -46,7 +46,7 @@ public class SingletonPatternCreator extends FilesCreator {
                         "\tprotected pointcut protectionExclusions(): \n" +
                         "\t\tcall((Screen+).new(..));\n\n" +
                         "}\n");
-        FileData screen = createFileData(path + "Screen.java",
+        FileData screen = createFileData(examplePath + "Screen.java",
                 "package designpattern." + packageName + "example; \n\n" +
                         "public class Screen {\n\n" +
                         "\tprivate int width, height;" +

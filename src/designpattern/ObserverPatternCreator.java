@@ -16,7 +16,7 @@ public class ObserverPatternCreator extends FilesCreator {
 
     public ObserverPatternCreator(){
         super();
-        int nbFiles = 3;
+        int nbFiles = 5;
         File f = new File(path + Separator.SEPARATOR + "example" + Separator.SEPARATOR);
         f.mkdirs(); //Create all directories
         this.fileDataTab = new FileData[nbFiles];
@@ -25,36 +25,75 @@ public class ObserverPatternCreator extends FilesCreator {
 
     @Override
     protected void createBinaryFile() {
-        FileData observer = createFileData(path + "Observer.java",
+        FileData observerProtocol = createFileData(path + "ObserverProtocol.aj",
                 "package designpattern." + packageName + "; \n\n" +
-                        "public interface Observer {\n\n" +
-                        "\tvoid setSubject(Subject s);\n\n" +
-                        "\tSubject getSubject();\n\n" +
-                        "\tvoid update();\n\n" +
+                        "public abstract aspect ObserverProtocol {\n\n" +
+                        "\tprotected interface Subject { }\n\n" +
+                        "\tprotected interface Observer { }\n\n" +
+                        "\tprivate WeakHashMap perSubjectObservers;\n\n" +
+                        "\tprotected List getObservers(Subject s) {\n" +
+                        "\t\tif (perSubjectObservers == null) {\n\t\t\tperSubjectObservers = new WeakHashMap();\n\t\t}\n" +
+                        "\t\tList observers = (List)perSubjectObservers.get(s);\n" +
+                        "\t\tif ( observers == null ) {\n\t\t\tobservers = new LinkedList();\n\t\t\tperSubjectObservers.put(s, observers);\n\t\t}\n" +
+                        "\t\treturn observers;\n\t}\n\n" +
+                        "\tpublic void addObserver(Subject s,Observer o){\n\t\tgetObservers(s).add(o);\n\t}\n\n" +
+                        "\tpublic void removeObserver(Subject s,Observer o){\n\t\tgetObservers(s).remove(o);\n\t}\n\n" +
+                        "\tabstract protected pointcut subjectChange(Subject s);\n" +
+                        "\tabstract protected void updateObserver(Subject s, Observer o);\n" +
+                        "\tafter(Subject s): subjectChange(s) {\n" +
+                        "\t\tIterator iter = getObservers(s).iterator();\n" +
+                        "\t\twhile ( iter.hasNext() ) {\n\t\t\tupdateObserver(s, ((Observer)iter.next()));\n\t\t}\n\t}" +
                         "}\n");
-        FileData subject = createFileData(path + "Subject.java",
-                "package designpattern." + packageName + "; \n\n" +
-                        "public interface Subject {\n\n" +
-                        "\tpublic void addObserver(Observer o);\n\n" +
-                        "\tpublic void removeObserver(Observer o);\n\n" +
-                        "\tCollection<Observer> getObservers();" +
+
+        String examplePath = path  + Separator.SEPARATOR + "example" + Separator.SEPARATOR;
+        FileData client = createFileData(examplePath + "Client.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public class Client {\n\n" +
+                        "\tprivate static int nextID = 1;" +
+                        "\tprivate String name;\n\n" +
+                        "\tpublic Client(String name){\n\t\tthis.name = name;\n\t\tnextID++;\n\t}\n\n" +
+                        "\tpublic Client(){\n\t\tthis.name = \"anonymous\" + nextID;\n\t\tnextID++\n\t}\n\n" +
+                        "\tpublic String getName() {\n\t\treturn name;\n\t}\n\n" +
+                        "\tpublic void setName(String newName) {\n\t\tname = newName;\n\t}\n\n" +
                         "}\n");
-        FileData protocol = createFileData(path + "SubjectObserverProtocol.aj",
-                "package designpattern." + packageName + "; \n\n" +
-                        "public abstract aspect SubjectObserverProtocol {\n\n" +
-                        "\tabstract pointcut stateChanges(Subject s);\n\n" +
-                        "\tprivate ArrayList<Observer> Subject.observers = new ArrayList<Observer>();\n\n" +
-                        "\tafter(Subject s): stateChanges(s) {\n\t\tfor (Observer observer : s.getObservers()) {\n\t\t\tobserver.update();\n\t\t}\n\t}\n\n" +
-                        "\tpublic void Subject.addObserver(Observer obs) {\n\tobservers.add(obs);\n\tobs.setSubject(this);\n\t}\n\n" +
-                        "\tpublic void Subject.removeObserver(Observer obs) {\n\tobservers.remove(obs);\n\tobs.setSubject(null);\n\t}\n\n" +
-                        "\tpublic ArrayList<Observer> Subject.getObservers() { return observers; }\n\n" +
-                        "\tprivate Subject Observer.subject = null;\n\n" +
-                        "\tpublic void Observer.setSubject(Subject s) { subject = s; }\n\n" +
-                        "\tpublic Subject Observer.getSubject() { return subject; }\n\n" +
+        FileData product = createFileData(examplePath + "Product.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public class Product {\n\n" +
+                        "\tprivate float price;\n\n" +
+                        "\tprivate String name;\n\n" +
+                        "\tpublic Product(String name, float price) {\n\t\tthis.name = name;\n\t\tthis.price = price; \n\t}" +
+                        "\tpublic float getPrice() {\n\t\treturn price;\n\t}\n\n" +
+                        "\tpublic void setPrice(float newPrice) {\n\t\tprice = newPrice;\n\t}\n\n" +
+                        "\tpublic String getName() {\n\t\treturn name;\n\t}\n\n" +
+                        "\tpublic void setName(String newName) {\n\t\tname = newName;\n\t}\n\n" +
                         "}\n");
-        this.fileDataTab[0] = observer;
-        this.fileDataTab[1] = subject;
-        this.fileDataTab[2] = protocol;
+        FileData productObserver = createFileData(examplePath + "ProductObserver.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public aspect ProductObserver extends ObserverProtocol {\n\n" +
+                        "\tdeclare parents: Product implements Subject;\n\n"+
+                        "\tdeclare parents: Client implements Observer;\n\n" +
+                        "\tprotected pointcut subjectChange(Subject s):\n" +
+                        "\t\t(call(void Product.setPrice(float)) && target(s); \n\n" +
+                        "\tprotected void updateObserver(Subject s, Observer o) { \n" +
+                        "\t\tSystem.out.println(\"Hello \" + ((Client) o).getName() + \",\nthe price of \" + ((Product) s).getName() + \" changes to \" + ((Product) s).getPrice());\n\t}\n\n" +
+                        "}\n");
+        FileData main = createFileData(examplePath + "Main.java",
+                "package designpattern." + packageName + "example; \n\n" +
+                        "public class Main {" +
+                        "\tpublic static void main(String[] args) {\n\n" +
+                        "\t\tProduct a = new Product(\"A\", 15.99f);\n" +
+                        "\t\tClient john = new Client(\"John\");\n" +
+                        "\t\tClient doe = new Client(\"Doe\");\n\n" +
+                        "\t\tProductObserver.aspectOf().addObserver(a, john);\n" +
+                        "\t\ta.setPrice(13.0f);\n" +
+                        "\t\tProductObserver.aspectOf().addObserver(a, doe);\n" +
+                        "\t\ta.setPrice(12.0f)\n\n;" +
+                        "}\n");
+        this.fileDataTab[0] = observerProtocol;
+        this.fileDataTab[1] = client;
+        this.fileDataTab[2] = product;
+        this.fileDataTab[3] = productObserver;
+        this.fileDataTab[4] = main;
         try {
             FileOutputStream file = new FileOutputStream(binaryFileName);
             ObjectOutputStream os = new ObjectOutputStream(file);
