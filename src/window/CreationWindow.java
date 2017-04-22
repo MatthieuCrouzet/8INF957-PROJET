@@ -4,6 +4,9 @@ import designpattern.ProjectCreator;
 import main.MyMain;
 import designpattern.AdapterPatternCreator;
 import designpattern.BuilderPatternCreator;
+import designpattern.CompositePatternCreator;
+import designpattern.FlyweightPatternCreator;
+import designpattern.InterpreterPatternCreator;
 import designpattern.MediatorPatternCreator;
 import designpattern.ObserverPatternCreator;
 import task.Task;
@@ -146,6 +149,18 @@ public class CreationWindow extends JFrame {
                     case BUILDER:
                     	BuilderPatternCreator builderPatternCreator = new BuilderPatternCreator();
                     	builderPatternCreator.execute();
+                    	break;
+                    case FLYWEIGHT:
+                    	FlyweightPatternCreator flyweightPatternCreator = new FlyweightPatternCreator();
+                    	flyweightPatternCreator.execute();
+                    	break;
+                    case INTERPRETER:
+                    	InterpreterPatternCreator interpreterPatternCreator = new InterpreterPatternCreator();
+                    	interpreterPatternCreator.execute();
+                    	break;
+                    case COMPOSITE:
+                    	CompositePatternCreator compositePatternCreator = new CompositePatternCreator();
+                    	compositePatternCreator.execute();
                     	break;
                      
                 }

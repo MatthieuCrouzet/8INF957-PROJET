@@ -26,7 +26,9 @@ public class InterpreterPatternCreator extends FilesCreator {
     protected void createBinaryFile() {
         FileData expression = createFileData(path + "Expression.java",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * An interface that defines methods to specifies how to evaluate sentences in language\n */\n" +
                         "public interface Expression {\n\n" +
+                		"\t/**\n\t * Uses a defined grammar to parse an expression  \n\t * @param context A string to parse depending on the grammar \n\t * @return True if the parser has succeed else returns false\n\t */\n" +
                         "\tpublic boolean interpret(String context);\n\n" +
                         "}\n");
         this.fileDataTab[0] = expression;
