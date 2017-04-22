@@ -11,6 +11,11 @@ public class FileData implements Serializable{
     public String filename;
     public String content;
 
+    /**
+     * 
+     * @param filename
+     * @param content
+     */
     public FileData(String filename, String content){
         this.filename = filename;
         this.content = content;
