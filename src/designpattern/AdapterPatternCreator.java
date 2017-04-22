@@ -25,15 +25,20 @@ public class AdapterPatternCreator extends FilesCreator{
     protected void createBinaryFile() {
         FileData adaptee = createFileData(path + "Adaptee.java",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * Interface which declares methods to be adapt\n */\n" +
                         "public interface Adaptee {\n\n" +
-                        "\tpublic void methodB();//method to be adapt by Adapter class\n\n" +
+                		"\t/**\n\t * Method which has to be adapt by Adapter class\n\t */\n" +
+                        "\tpublic void methodB();\n\n" +
                         "}\n");
         FileData adapter = createFileData(path + "Adapter.java",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * Class which adapt methods from interface\n */\n" +
                         "public class Adapter{\n\n" +
-                		"\tprivate Adaptee adaptee;"+
+                		"\tprivate Adaptee adaptee;\n\n"+
+                		"\t/**\n\t * Set an adaptee interface to work on\n\t * @param instance an instance which implements the Adaptee interface which will be adapted\n\t */\n" +
                         "\tpublic Adapter(Adaptee instance){ \n\t\tthis.adaptee = instance;\n\t}\n\n" +
-                        "\tpublic void methodA() { \n\t\t//adapt methodB utilisation \n\t\tthis.adaptee.methodB(); \n\t}\n\n" +
+                		"\t/**\n\t * Adapt method usage of an instance which implements Adaptee interface \n\t */\n" +
+                        "\tpublic void methodA() { \n\t\tthis.adaptee.methodB(); \n\t}\n\n" +
                         "}\n");
         this.fileDataTab[0] = adaptee;
         this.fileDataTab[1] = adapter;

@@ -2,6 +2,9 @@ package window;
 
 import designpattern.ProjectCreator;
 import main.MyMain;
+import designpattern.AdapterPatternCreator;
+import designpattern.BuilderPatternCreator;
+import designpattern.MediatorPatternCreator;
 import designpattern.ObserverPatternCreator;
 import task.Task;
 import utils.Window;
@@ -133,7 +136,18 @@ public class CreationWindow extends JFrame {
                         observerPatternCreator.execute();
                         break;
                     case MEDIATOR:
+                    	MediatorPatternCreator mediatorPatternCreator = new MediatorPatternCreator();
+                        mediatorPatternCreator.execute();
                         break;
+                    case ADAPTER:
+                    	AdapterPatternCreator adapterPatternCreator = new AdapterPatternCreator();
+                    	adapterPatternCreator.execute();
+                    	break;
+                    case BUILDER:
+                    	BuilderPatternCreator builderPatternCreator = new BuilderPatternCreator();
+                    	builderPatternCreator.execute();
+                    	break;
+                     
                 }
             }
         }
