@@ -4,10 +4,10 @@ package utils;
  * Created by Matthieu CROUZET on 04/03/2017.
  */
 public enum Pattern {
-    OBSERVER, //AspectJ pour ajouter de la modularité
-    ITERATOR,
+    OBSERVER, //AspectJ pour ajouter de la modularité, exemple fait
+    ITERATOR, //exemple fait
     MEDIATOR,
-    SINGLETON,
+    SINGLETON, //Exemple fait
     FLYWEIGHT,
     COMPOSITE,
     STATE,
