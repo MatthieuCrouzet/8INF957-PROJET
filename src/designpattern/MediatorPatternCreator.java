@@ -27,14 +27,20 @@ public class MediatorPatternCreator extends FilesCreator {
     protected void createBinaryFile() {
         FileData mediatorAspect = createFileData(path + "MediatorAspect.aj",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * Represents an Mediator pattern in AspectJ\n */\n" +
                         "public abstract aspect MediatorAspect {\n\n" +
+                		"\t/**\n\t * Interface that defines operations to create an object that represents an object\n\t */\n" +
                         "\tprotected interface Colleague {}\n" +
+                		"\t/**\n\t * Interface that defines operations to create an object that represents a Mediator\n\t */\n" +
                         "\tprotected interface Mediator {}\n\n" +
                         "\tprivate WeakHashMap mappingColleagueToMediator = new WeakHashMap( );\n" +
+                		"\t/**\n\t * Gets a Mediator mapped with a colleague\n\t * @param colleague An object which is mapped with the Mediator searched \n\t * @return the object that is mapped with the colleague */\n" +
                         "\tprivate Mediator getMediator(Colleague colleague){\n" +
                         "\t\tMediator mediator = (Mediator) mappingColleagueToMediator.get(colleague);" +
                         "\t\treturn mediator;\n\t}\n\n" +
+                		"\t/**\n\t * Sets a Mediator mapped with a colleague\n\t * @param c An object which will be mapped with an instance of Mediator \n\t * @param the Mediator that will be mapped with the colleague */\n" +
                         "\tpublic void setMediator(Colleague c, Mediator m){\n\t\tmappingColleagueToMediator.put(c, m);\n\t}\n\n" +
+                		"\t/**\n\t * A pointcut called change of a colleague\n\t */\n" +
                         "\tprotected abstract pointcut change(Colleague c);\n\n" +
                         "\tafter(Colleague c) : change(c) {\n\t\tnotifyMediator(c, getMediator(c));\n\t}\n\n" +
                         "\tprotected abstract void notifyMediator(Colleague c, Mediator m);\n\n" +

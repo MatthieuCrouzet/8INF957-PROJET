@@ -46,7 +46,7 @@ public class IteratorPatternCreator extends FilesCreator {
                         "\tpublic boolean append(Object o);\n" +
                 		"\t/**\n\t * Removes an object to the collection\n\t * @param o an object to remove to the collection \n\t * @return true if an object is removed */\n" +
                         "\tpublic boolean remove(Object o);\n" +
-                		"\t/**\n\t * Removes an object to the collection\n\t * @param o an object to remove to the collection \n\t * @return true if an object is removed */\n" +
+                		"\t/**\n\t * Gets an object located at an index of the collection\n\t * @param index an integer that allows to get the object located in the collection \n\t * @return the object that is searched at the index */\n" +
                         "\tpublic Object get(int index);\n" +
                         "}\n");
         String examplePath = path  + Separator.SEPARATOR + "example" + Separator.SEPARATOR;
