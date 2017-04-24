@@ -28,9 +28,12 @@ public class SingletonPatternCreator extends FilesCreator {
     protected void createBinaryFile() {
         FileData singleton = createFileData(path + "SingletonProtocol.aj",
                 "package designpattern." + packageName + "; \n\n" +
+                		"\t/**\n\t * Represents a Singleton pattern in AspectJ */\n" +
                         "public abstract aspect SingletonProtocol {\n\n" +
                         "\tprivate Hashable singletons = new Hashable();\n\n" +
+                		"\t/**\n\t * Interface that defines a Singleton\n\t */\n" +
                         "\tpublic interface Singleton {};\n\n" +
+                		"\t/**\n\t * A pointcut called on exclusions\n\t */\n" +
                         "\tprotected pointcut protectionExclusions();\n\n" +
                         "\tObject around() : call((Singleton+).new(..)) && ! protectionExclusions(){\n" +
                         "\t\tClass singleton = thisJoinPoint.getSignature().getDeclaringType();\n" +

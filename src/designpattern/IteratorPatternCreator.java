@@ -26,18 +26,27 @@ public class IteratorPatternCreator extends FilesCreator {
     protected void createBinaryFile() {
         FileData iterator = createFileData(path + "IteratorAspect.aj",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * Represents an Iterator pattern in AspectJ\n */\n" +
                         "public abstract aspect IteratorAspect {\n\n" +
+                		"\t/**\n\t * Interface that defines operations to create an iterator\n\t */\n" +
                         "\tpublic interface Aggregate {\n\n" +
+                		"\t\t/**\n\t\t * Method which creates an iterator and return it \n\t\t * @return Iterator the iterator which is created\n\t\t */ \n" +
                         "\t\tpublic Iterator createIterator();\n" +
+                		"\t\t/**\n\t\t * Method which creates a reverse iterator and return it \n\t\t * @return Iterator the reverse iterator which is created\n\t\t */ \n" +
                         "\t\tpublic Iterator createReverseIterator();\n\n" +
                         "\t}\n\n" +
                         "}\n");
         FileData collection = createFileData(path + "Collection.java",
                 "package designpattern." + packageName + "; \n\n" +
+                		"/**\n * A collection used by an iterator\n */\n" +
                         "public interface Collection {\n\n" +
+                		"\t/**\n\t * Counts the size of the collection\n\t * @return the size of the collection */\n" +
                         "\tpublic int count();\n" +
+                		"\t/**\n\t * Adds an object to the collection\n\t * @param o an object to append to the collection \n\t * @return true if an object is added */\n" +
                         "\tpublic boolean append(Object o);\n" +
+                		"\t/**\n\t * Removes an object to the collection\n\t * @param o an object to remove to the collection \n\t * @return true if an object is removed */\n" +
                         "\tpublic boolean remove(Object o);\n" +
+                		"\t/**\n\t * Removes an object to the collection\n\t * @param o an object to remove to the collection \n\t * @return true if an object is removed */\n" +
                         "\tpublic Object get(int index);\n" +
                         "}\n");
         String examplePath = path  + Separator.SEPARATOR + "example" + Separator.SEPARATOR;
