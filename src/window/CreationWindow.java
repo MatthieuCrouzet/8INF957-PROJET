@@ -1,21 +1,28 @@
 package window;
 
 import designpattern.ProjectCreator;
+import designpattern.SingletonPatternCreator;
+import designpattern.StatePatternCreator;
 import main.MyMain;
 import designpattern.AdapterPatternCreator;
 import designpattern.BuilderPatternCreator;
 import designpattern.CompositePatternCreator;
 import designpattern.FlyweightPatternCreator;
 import designpattern.InterpreterPatternCreator;
+import designpattern.IteratorPatternCreator;
 import designpattern.MediatorPatternCreator;
 import designpattern.ObserverPatternCreator;
 import task.Task;
 import utils.Window;
 
 import javax.swing.*;
+
+import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl.SingletonIterator;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 /**
  * Created by Matthieu CROUZET on 04/03/2017.
@@ -162,7 +169,18 @@ public class CreationWindow extends JFrame {
                     	CompositePatternCreator compositePatternCreator = new CompositePatternCreator();
                     	compositePatternCreator.execute();
                     	break;
-                     
+                    case ITERATOR:
+                    	IteratorPatternCreator iteratorPatternCreator = new IteratorPatternCreator();
+                    	iteratorPatternCreator.execute();
+                    	break;
+                    case SINGLETON:
+                    	SingletonPatternCreator singletonPatternCreator = new SingletonPatternCreator();
+                    	singletonPatternCreator.execute();
+                    	break;
+                    case STATE:
+                    	StatePatternCreator statePatternCreator = new StatePatternCreator();
+                    	statePatternCreator.execute();
+                    	break;
                 }
             }
         }
